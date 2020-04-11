@@ -42,7 +42,7 @@ public:
 	}
 
 
-	shared_ptr<MyWindow> GetMutableWindow() const {
+	shared_ptr<MyWindow> GetMutableWindow() {
 		return mWindow.lock();
 	}
 
