@@ -13,6 +13,7 @@ class MyButton :
 {
 
 	friend class MyWindow;
+	friend class MyMenu;
 
 	MyColor mHighlight;
 
@@ -42,13 +43,8 @@ public:
 	}
 
 
-	shared_ptr<MyWindow> GetMutableWindow() {
+	shared_ptr<MyWindow> GetMutableWindow() const {
 		return mWindow.lock();
-	}
-
-
-	void SetFuncToDo(void (*funcToSet)()) {
-		funcToDo = funcToSet;
 	}
 
 

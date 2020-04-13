@@ -29,22 +29,6 @@ public:
 	MyVector GetUpRight() const { return upRight; }
 
 
-	bool SetLowLeft(const MyVector& v) {
-		bool doFit = v.FitsInsideMyRectangle(upRight);
-		if (doFit)
-			lowLeft = v;
-		return doFit;
-	}
-
-
-	bool SetUpRight(const MyVector& v) {
-		bool doFit = v.FitsOutsideMyRectangle(lowLeft);
-		if (doFit)
-			upRight = v;
-		return doFit;
-	}
-
-
 	bool ContainVectInside(const MyVector& v) const {
 		return (v.FitsOutsideMyRectangle(lowLeft) && v.FitsInsideMyRectangle(upRight));
 	}

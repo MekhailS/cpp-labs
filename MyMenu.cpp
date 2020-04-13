@@ -41,7 +41,7 @@ bool MyMenu::SetButtonFunc(void (*funcToSet)(), string nameMyWindow, string name
 	if (wnd != nullptr) {
 		auto butt = wnd->GetMutableButtonByName(nameMyButton);
 		if (butt != nullptr) {
-			butt->SetFuncToDo(funcToSet);
+			butt->funcToDo = funcToSet;
 			return 1;
 		}
 		return 0;

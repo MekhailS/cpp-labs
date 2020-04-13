@@ -21,12 +21,6 @@ public:
 	double GetLen() const { return (sqrt(x * x + y * y)); }
 
 
-	void SetX(int x) { this->x = x; }
-
-
-	void SetY(int y) { this->y = y; }
-
-
 	bool IsZero() const { return(!(x || y)); }
 
 
