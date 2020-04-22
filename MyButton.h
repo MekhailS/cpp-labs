@@ -28,10 +28,6 @@ class MyButton :
 
 public:
 
-	void SetHighlightColor(const MyColor& color) {
-		mHighlight = color;
-	}
-
 
 	MyColor GetHighlightColor() const {
 		return mHighlight;

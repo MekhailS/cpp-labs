@@ -21,21 +21,6 @@ public:
 		mFrame(frame), mName(name), mColor(color) {}
 
 
-	void SetFrame(const MyRectangle& frame) {
-		mFrame = frame;
-	}
-
-
-	void SetName(const string& name) {
-		mName = name;
-	}
-
-
-	void SetColor(const MyColor& color) {
-		mColor = color;
-	}
-
-
 	MyRectangle GetFrame() const {
 		return mFrame;
 	}
