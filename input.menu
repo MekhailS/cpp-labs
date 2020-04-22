@@ -1,0 +1,56 @@
+//first menu
+menu.begin:
+	
+	color(150,130,220)
+	frame((0,0);(1500,800))
+	name(menu)
+	
+	window.begin:
+		
+		color(200, 200, 150)
+		name(window1)
+		button.begin:
+			name(button1)
+			highlight(250, 0, 0)
+			color(0, 100, 0)
+			frame((60,60);(220,220)
+		button.end
+		
+		
+		button.begin:
+			name(button1)
+			highlight(250, 0, 0)
+			color(0, 100, 0)
+			frame((60,250);(220,410)
+		button.end
+		
+		frame((50,50);(500,500))
+		
+	window.end
+	
+	window.begin:
+		
+		color(100, 200, 250)
+		name(WINDOW2)
+		
+		button.begin:
+			name(button2.1)
+			highlight(250, 250, 0)
+			color(110, 100, 0)
+			frame((810,60);(1000,220)
+		button.end
+		
+		
+		button.begin:
+			name(button2.1)
+			highlight(250, 250, 0)
+			color(110, 100, 200)
+			frame((810,250);(1000,410)
+		button.end
+		
+		
+		
+		frame((800,50);(1350,500))
+		
+	window.end
+menu.end
