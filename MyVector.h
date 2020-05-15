@@ -65,6 +65,15 @@ public:
 	}
 
 
+	bool operator==(const MyVector& vect) {
+		return ((x == vect.GetX()) && (y == vect.GetY()));
+	}
+
+	bool operator!=(const MyVector& vect) {
+		return !((x == vect.GetX()) && (y == vect.GetY()));
+	}
+
+
 	bool FitsInsideMyRectangle(const MyVector& vect) const {
 		return ((x <= vect.GetX()) && (y <= vect.GetY()));
 	}

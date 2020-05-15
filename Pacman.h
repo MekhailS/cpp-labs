@@ -3,14 +3,22 @@
 #include <memory>
 #include "Entity.h"
 
-enum DIRECTION {
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT
-};
+
+class Entity;
+class Ghost;
 
 class Pacman : public Entity 
-{
-	DIRECTION moveDirection;
+{	
+	int boostedTime;
+
+public:
+	
+	bool MakeStep();
+
+	using Entity::SetMoveDirection;
+
+	bool TryRespawn();
+
+	void Kill();
+
 };

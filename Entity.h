@@ -2,7 +2,6 @@
 
 #include <memory>
 #include "MyVector.h"
-#include "Game.h"
 
 using namespace std;
 
@@ -14,13 +13,52 @@ enum ENT_STATUS {
 	ENT_NORMAL
 };
 
+enum DIRECTION {
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+	STOP
+};
 
-class Entity 
+
+MyVector getMoveFromDirection(DIRECTION direction);
+
+
+class Game;
+
+
+class Entity
 {
+protected:
+
 	MyVector position;
 	ENT_STATUS status;
-	int speed;	//number of ticks required to move on next cell;
 	int lives;
+	int maxLives;
+	MyVector respawnPoint;
+	MyVector move;
+	int respawnTime;
 
 	weak_ptr<Game> myGame;
+
+	void SetMoveDirection(DIRECTION direction);
+
+
+public:
+
+	bool MakeStep();
+
+	bool TryRespawn();
+
+	void Kill();
+
+	void Heal(int addLives);
+
+	void HealFull();
+
+	MyVector GetPosition() const;
+
+	ENT_STATUS GetStatus() const;
+
 };
