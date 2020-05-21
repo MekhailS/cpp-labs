@@ -74,11 +74,11 @@ public:
 	}
 
 
-	bool FitsInsideMyRectangle(const MyVector& vect) const {
+	bool FitsOutsideMyRectangle(const MyVector& vect) const {
 		return ((x <= vect.GetX()) && (y <= vect.GetY()));
 	}
 
-	bool FitsOutsideMyRectangle(const MyVector& vect) const {
+	bool FitsInsideMyRectangle(const MyVector& vect) const {
 		return ((x >= vect.GetX()) && (y >= vect.GetY()));
 	}
 };

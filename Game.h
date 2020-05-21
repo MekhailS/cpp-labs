@@ -7,51 +7,56 @@
 #include <ctime>
 
 #include "Entity.h"
+#include "Maze.h"
 #include "Pacman.h"
 #include "Ghost.h"
 
 using namespace std;
 
 
-enum CELL_OBJ {
-	CELL_WALL = 0,
-	CELL_EMPTY,
-	CELL_FRUIT,
-	CELL_ENERGIZER,
-	CELL_COIN
+enum GAME_STATUS {
+	GAME_LOSE,
+	GAME_NORMAL,
+	GAME_WIN
 };
+
 
 
 class Game 
 {
 	
-	shared_ptr<Pacman> pacman;
+	Pacman pacman;
 	list<shared_ptr<Ghost>> ghostsAlive;
 	list<shared_ptr<Ghost>> ghostsDeadWRespawn;
-
 	list<shared_ptr<Ghost>> ghostsDead;
 
-	vector<vector<CELL_OBJ>>maze;
+	Maze maze;
 
-	int score;
-	int time;
+	int scoreToWin;
 
-
-	CELL_OBJ GetCellObjByVector(const MyVector& v) const;
-
-	void SetCellObjByVector(const MyVector& v, CELL_OBJ obj);
 
 	void SetStatusAliveGhosts(ENT_STATUS newStatus);
 
-	void RestartNotDeadGhosts();
+	bool ConflictPacmanGhosts();
 
-	
+	bool RespawnGhosts();
+
+	void RestartGhosts();
+
 public:
+	
+	Game(ifstream& fileWithLevel, int defaultMaxLives, int defaultRespawnTime);
 
-	void Update();
+	GAME_STATUS Update();
 
+	void SetPacmanDirection(DIRECTION direction);
 
-	friend class Entity;
-	friend class Pacman;
-	friend class Ghost;
+	const Maze& GetMaze() const;
+
+	const Pacman& GetPacman() const;
+
+	const list<shared_ptr<const Ghost>> GetGhosts() const;
+
+	int GetWinScore() const;
+
 };

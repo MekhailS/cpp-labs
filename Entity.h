@@ -2,6 +2,7 @@
 
 #include <memory>
 #include "MyVector.h"
+#include "MyColor.h"
 
 using namespace std;
 
@@ -25,7 +26,7 @@ enum DIRECTION {
 MyVector getMoveFromDirection(DIRECTION direction);
 
 
-class Game;
+class Maze;
 
 
 class Entity
@@ -40,25 +41,28 @@ protected:
 	MyVector move;
 	int respawnTime;
 
-	weak_ptr<Game> myGame;
-
 	void SetMoveDirection(DIRECTION direction);
-
 
 public:
 
-	bool MakeStep();
+	Entity(const MyVector& s_respawnPoint, int s_maxLives, int s_respawnTime);
+
+	int MakeStep(Maze& maze);
 
 	bool TryRespawn();
 
-	void Kill();
+	bool Kill();
 
 	void Heal(int addLives);
 
 	void HealFull();
 
+	int GetLives() const;
+
 	MyVector GetPosition() const;
 
 	ENT_STATUS GetStatus() const;
+
+	MyColor GetColor() const;
 
 };

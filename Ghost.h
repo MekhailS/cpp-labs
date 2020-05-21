@@ -9,24 +9,29 @@ enum GHOST_TYPE {
 };
 
 class Entity;
-class Pacman;
 
 class Ghost : 
-	public enable_shared_from_this<Ghost>, public Entity
+	public Entity
 {
+	MyVector jailPos;
 	GHOST_TYPE type;
 
-	void ChooseMove();
-
+	void ChooseMove(const Maze& maze, const MyVector& pacmanPos);
 
 public:
+
+	Ghost(const MyVector& s_respawnPoint,
+		int s_defaultMaxLives, int s_defaultRespawnTime,
+		GHOST_TYPE s_type, const MyVector& s_jailPos);
+
+	int MakeStep(Maze& maze, const MyVector& pacmanPos);
+
+	bool Kill();
+
+	void MoveToJail();
 	
 	void SetStatus(ENT_STATUS newStatus);
 
-	bool MakeStep();
-
-	bool TryRespawn();
-
-	void Kill();
+	MyColor GetColor() const;
 
 };
