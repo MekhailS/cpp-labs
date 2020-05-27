@@ -1,6 +1,7 @@
 #pragma once
 
-#include <memory>
+#include "pch.h"
+
 #include "Entity.h"
 
 
@@ -11,6 +12,11 @@ class Pacman : public Entity
 {	
 	int score;
 	int boostedTime;
+
+
+	void DrawLifes(HDC hdc) const;
+
+	void DrawScore(HDC hdc) const;
 
 public:
 
@@ -23,4 +29,5 @@ public:
 
 	using Entity::SetMoveDirection;
 
+	void Draw(HDC hdc) const;
 };

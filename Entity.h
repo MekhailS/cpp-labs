@@ -1,8 +1,7 @@
 #pragma once
 
-#include <memory>
-#include "MyVector.h"
-#include "MyColor.h"
+#include "pch.h"
+
 
 using namespace std;
 
@@ -21,9 +20,6 @@ enum DIRECTION {
 	RIGHT,
 	STOP
 };
-
-
-MyVector getMoveFromDirection(DIRECTION direction);
 
 
 class Maze;
@@ -63,6 +59,10 @@ public:
 
 	ENT_STATUS GetStatus() const;
 
-	MyColor GetColor() const;
+	virtual MyColor GetColor() const;
+
+	MyVector GetMoveFromDirection(DIRECTION direction) const;
+
+	void Draw(HDC hdc) const;
 
 };

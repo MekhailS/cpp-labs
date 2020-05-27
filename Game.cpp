@@ -59,33 +59,6 @@ void Game::SetPacmanDirection(DIRECTION direction) {
 }
 
 
-const Maze& Game::GetMaze() const {
-	return maze;
-}
-
-
-const Pacman& Game::GetPacman() const {
-	return pacman;
-}
-
-
-const list<shared_ptr<const Ghost>> Game::GetGhosts() const {
-	list<shared_ptr<const Ghost>> allGhosts;
-
-	for (auto& ghost : ghostsAlive)
-		allGhosts.push_back(ghost);
-	for (auto& ghost : ghostsDeadWRespawn)
-		allGhosts.push_back(ghost);
-
-	return allGhosts;
-}
-
-
-int Game::GetWinScore() const {
-	return scoreToWin;
-}
-
-
 bool Game::ConflictPacmanGhosts() {
 	auto it = ghostsAlive.begin();
 	while (it != ghostsAlive.end()) {
@@ -142,3 +115,30 @@ void Game::SetStatusAliveGhosts(ENT_STATUS newStatus) {
 	}
 }
 
+
+void Game::DrawCellsOnEntities(HDC hdc) const {
+	for (auto& ghost : ghostsAlive) {
+		maze.DrawCellByVector(hdc, ghost->GetPosition());
+	}
+	for (auto& ghost : ghostsDeadWRespawn) {
+		maze.DrawCellByVector(hdc, ghost->GetPosition());
+	}
+	maze.DrawCellByVector(hdc, pacman.GetPosition());
+}
+
+
+void Game::DrawEntities(HDC hdc) const {
+	for (auto& ghost : ghostsAlive) {
+		ghost->Draw(hdc);
+	}
+	for (auto& ghost : ghostsDeadWRespawn) {
+		ghost->Draw(hdc);
+	}
+	pacman.Draw(hdc);
+}
+
+
+void Game::DrawAll(HDC hdc) const {
+	maze.DrawMaze(hdc);
+	DrawEntities(hdc);
+}

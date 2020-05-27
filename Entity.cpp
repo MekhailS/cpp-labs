@@ -1,13 +1,14 @@
 #include "Entity.h"
 
 #include "Maze.h"
+#include "Game.h"
 
 
 Entity::Entity(const MyVector& s_respawnPoint, 
 	int s_maxLives, int s_respawnTime) {
 	position = respawnPoint = s_respawnPoint;
 	lives = maxLives = s_maxLives;
-	move = getMoveFromDirection(STOP);
+	move = GetMoveFromDirection(STOP);
 	respawnTime = s_respawnTime;
 	status = ENT_NORMAL;
 }
@@ -95,11 +96,23 @@ MyColor Entity::GetColor() const {
 
 
 void Entity::SetMoveDirection(DIRECTION direction) {
-	move = getMoveFromDirection(direction);
+	move = GetMoveFromDirection(direction);
 }
 
 
-MyVector getMoveFromDirection(DIRECTION direction) {
+void Entity::Draw(HDC hdc) const {
+	HBRUSH hBrush;
+	MyColor clr = GetColor();
+	MyVector v = GetPosition();
+	hBrush = CreateSolidBrush(RGB(clr.Red(), clr.Green(), clr.Blue()));
+	SelectObject(hdc, hBrush);
+	Ellipse(hdc, v.GetX() * SQUARE_SIZE, v.GetY() * SQUARE_SIZE,
+		v.GetX() * SQUARE_SIZE + SQUARE_SIZE, v.GetY() * SQUARE_SIZE + SQUARE_SIZE);
+	DeleteObject(hBrush);
+}
+
+
+MyVector Entity::GetMoveFromDirection(DIRECTION direction) const {
 	MyVector move(0, 0);
 	switch (direction) {
 	case UP:

@@ -1,7 +1,6 @@
 #include "interact.h"
 
 #include "Game.h"
-#include "graphics.h"
 
 #include <iterator>
 #include <fstream>
@@ -28,8 +27,7 @@ int Interact(HDC hdc, HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
     switch (message) {
     case WM_TIMER:
         if (flagStart) {
-            DrawCellOnPacman(hdc, game->GetMaze(), game->GetPacman());
-            DrawCellOnListGhost(hdc, game->GetMaze(), game->GetGhosts());
+            game->DrawCellsOnEntities(hdc);
 
             gameStatus = game->Update();
             switch (gameStatus) {
@@ -42,11 +40,7 @@ int Interact(HDC hdc, HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
                 flagStart = 0;
                 break;
             }
-            DrawLifes(hdc, game->GetPacman());
-            DrawScore(hdc, game->GetPacman());
-
-            DrawPacman(hdc, game->GetPacman());
-            DrawListGhost(hdc, game->GetGhosts());
+            game->DrawEntities(hdc);
         }
         break;
 
@@ -61,7 +55,7 @@ int Interact(HDC hdc, HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
                 inFile.open(fileName, std::ifstream::in);
                 game = new Game(inFile, 1, 100);
                 SetTimer(hWnd, TIMER, 100, NULL);
-                DrawMaze(hdc, game->GetMaze());
+                game->DrawAll(hdc);
                 return 0;
             }
             break;

@@ -59,3 +59,30 @@ int Pacman::MakeStep(Maze& maze) {
 int Pacman::GetScore() const {
 	return score;
 }
+
+
+void Pacman::DrawLifes(HDC hdc) const {
+	char numOfLifes[50] = { '\0' };
+	char text[50] = "Lifes: ";
+	_itoa_s(GetLives(), numOfLifes, 10);
+	strcat_s(text, numOfLifes);
+
+	TextOutA(hdc, 30.0 * SQUARE_SIZE, 0.0 * SQUARE_SIZE, text, strlen(text));
+}
+
+
+void Pacman::DrawScore(HDC hdc) const {
+	char numOfScores[50] = { '\0' };
+	char text[50] = "Score: ";
+	_itoa_s(GetScore(), numOfScores, 10);
+	strcat_s(text, numOfScores);
+
+	TextOutA(hdc, 30.0 * SQUARE_SIZE, 2.0 * SQUARE_SIZE, text, strlen(text));
+}
+
+
+void Pacman::Draw(HDC hdc) const {
+	Entity::Draw(hdc);
+	DrawLifes(hdc);
+	DrawScore(hdc);
+}

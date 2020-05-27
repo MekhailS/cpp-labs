@@ -1,10 +1,6 @@
 #pragma once
 
-#include <list>
-#include <queue>
-#include <memory>
-#include <cstdlib>
-#include <ctime>
+#include "pch.h"
 
 #include "Entity.h"
 #include "Maze.h"
@@ -19,7 +15,6 @@ enum GAME_STATUS {
 	GAME_NORMAL,
 	GAME_WIN
 };
-
 
 
 class Game 
@@ -51,12 +46,9 @@ public:
 
 	void SetPacmanDirection(DIRECTION direction);
 
-	const Maze& GetMaze() const;
+	void DrawCellsOnEntities(HDC hdc) const;
 
-	const Pacman& GetPacman() const;
+	void DrawEntities(HDC hdc) const;
 
-	const list<shared_ptr<const Ghost>> GetGhosts() const;
-
-	int GetWinScore() const;
-
+	void DrawAll(HDC hdc) const;
 };

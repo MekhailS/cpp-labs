@@ -1,9 +1,6 @@
 #pragma once
 
-#include <vector>
-#include <sstream>
-
-#include "MyVector.h"
+#include "pch.h"
 
 using namespace std;
 
@@ -43,6 +40,10 @@ public:
 	MyVector GetSpawnPacman() const;
 
 	MyVector GetJailGhosts() const;
+
+	void DrawCellByVector(HDC hdc, const MyVector& v) const;
+
+	void DrawMaze(HDC hdc) const;
 
 };
 

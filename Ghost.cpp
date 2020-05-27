@@ -96,9 +96,9 @@ void Ghost::ChooseMove(const Maze& maze, const MyVector& pacmanPos) {
 			move *= -1;
 			return;
 		}
-		if (getMoveFromDirection(newDirection) == move * -1)
+		if (Entity::GetMoveFromDirection(newDirection) == move * -1)
 			continue;
-		newPos = position + getMoveFromDirection(newDirection);
+		newPos = position + Entity::GetMoveFromDirection(newDirection);
 		// if there is valid pos then break;
 		if (maze.GetCellObjByVector(newPos) != CELL_WALL)
 			break;
@@ -109,7 +109,7 @@ void Ghost::ChooseMove(const Maze& maze, const MyVector& pacmanPos) {
 	// choose random move
 	while (1) {
 		DIRECTION newDirection = DIRECTION(rand() % int(STOP));
-		randomMove = getMoveFromDirection(newDirection);
+		randomMove = Entity::GetMoveFromDirection(newDirection);
 		MyVector newPos = position + randomMove;
 		CELL_OBJ shit = maze.GetCellObjByVector(newPos);
 		if (!((maze.GetCellObjByVector(newPos) == CELL_WALL) || (randomMove == move * -1)))
@@ -119,14 +119,14 @@ void Ghost::ChooseMove(const Maze& maze, const MyVector& pacmanPos) {
 	// choose optimal and escape moves
 	for (int i = 0; i < int(STOP); i++) {
 		DIRECTION newDirection = DIRECTION(i);
-		newPos = position + getMoveFromDirection(newDirection);
+		newPos = position + Entity::GetMoveFromDirection(newDirection);
 		double newDistance = (newPos - pacmanPos).GetLen();
 
 		if ((newDistance <= curDistance) && (maze.GetCellObjByVector(newPos) != CELL_WALL))
-			optimalMove = getMoveFromDirection(newDirection);
+			optimalMove = Entity::GetMoveFromDirection(newDirection);
 
 		if ((newDistance > curDistance) && (maze.GetCellObjByVector(newPos) != CELL_WALL))
-			escapeMove = getMoveFromDirection(newDirection);
+			escapeMove = Entity::GetMoveFromDirection(newDirection);
 	}
 
 	// if moves were not found then set them random

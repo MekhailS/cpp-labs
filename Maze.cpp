@@ -1,8 +1,5 @@
 #include "Maze.h"
 
-#include<iterator>
-#include<fstream>
-
 
 Maze::Maze(ifstream& fileWithLevel) {
 
@@ -123,4 +120,62 @@ int Maze::GetRightBorder() const {
 
 int Maze::GetUpBorder() const {
 	return maze.size();
+}
+
+
+void Maze::DrawCellByVector(HDC hdc, const MyVector& v) const {
+	HBRUSH hBrush;
+	int quaterOfCell = SQUARE_SIZE / 3;
+	int partOfCell = SQUARE_SIZE / 2;
+
+	CELL_OBJ cell = GetCellObjByVector(v);
+	if (cell != CELL_WALL) {
+		hBrush = CreateSolidBrush(RGB(255, 255, 255));
+		SelectObject(hdc, hBrush);
+		Rectangle(hdc, v.GetX() * SQUARE_SIZE, v.GetY() * SQUARE_SIZE,
+			v.GetX() * SQUARE_SIZE + SQUARE_SIZE, v.GetY() * SQUARE_SIZE + SQUARE_SIZE);
+		DeleteObject(hBrush);
+	}
+	switch (cell) {
+	case CELL_COIN:
+		hBrush = CreateSolidBrush(RGB(193, 0, 32));
+		SelectObject(hdc, hBrush);
+		Ellipse(hdc, v.GetX() * SQUARE_SIZE + quaterOfCell, v.GetY() * SQUARE_SIZE + quaterOfCell,
+			v.GetX() * SQUARE_SIZE + SQUARE_SIZE - quaterOfCell, v.GetY() * SQUARE_SIZE + SQUARE_SIZE - quaterOfCell);
+		DeleteObject(hBrush);
+		break;
+
+	case CELL_ENERGIZER:
+		hBrush = CreateSolidBrush(RGB(0, 107, 60));
+		SelectObject(hdc, hBrush);
+		Rectangle(hdc, v.GetX() * SQUARE_SIZE + quaterOfCell, v.GetY() * SQUARE_SIZE + quaterOfCell,
+			v.GetX() * SQUARE_SIZE + SQUARE_SIZE - quaterOfCell, v.GetY() * SQUARE_SIZE + SQUARE_SIZE - quaterOfCell);
+		DeleteObject(hBrush);
+		break;
+
+	case CELL_FRUIT:
+		hBrush = CreateSolidBrush(RGB(255, 0, 0));
+		SelectObject(hdc, hBrush);
+		Rectangle(hdc, v.GetX() * SQUARE_SIZE + quaterOfCell, v.GetY() * SQUARE_SIZE + quaterOfCell,
+			v.GetX() * SQUARE_SIZE + SQUARE_SIZE - quaterOfCell, v.GetY() * SQUARE_SIZE + SQUARE_SIZE - quaterOfCell);
+		DeleteObject(hBrush);
+		break;
+
+	case CELL_WALL:
+		hBrush = CreateSolidBrush(RGB(0, 0, 0));
+		SelectObject(hdc, hBrush);
+		Rectangle(hdc, v.GetX() * SQUARE_SIZE, v.GetY() * SQUARE_SIZE,
+			v.GetX() * SQUARE_SIZE + SQUARE_SIZE, v.GetY() * SQUARE_SIZE + SQUARE_SIZE);
+		DeleteObject(hBrush);
+		break;
+	}
+}
+
+
+void Maze::DrawMaze(HDC hdc) const {
+	for (int i = 0; i < GetUpBorder(); i++) {
+		for (int j = 0; j < GetRightBorder(); j++) {
+			DrawCellByVector(hdc, MyVector(i, j));
+		}
+	}
 }
