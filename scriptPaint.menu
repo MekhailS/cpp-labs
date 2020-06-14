@@ -1,0 +1,176 @@
+//first menu
+menu.begin:
+	
+	color(255,255,255)
+	frame((0,0);(1500,1000))
+	name(menu)
+	
+	// PANEL OF PAINT
+	window.begin:
+		
+		color(220, 220, 220)
+		name(PANEL)
+		button.begin:
+			name(SETBRUSH)
+			highlight(250, 0, 0)
+			color(0, 100, 0)
+			frame((520,0);(540,20)
+		button.end
+		
+		button.begin:
+			name(ERASE)
+			highlight(250, 0, 0)
+			color(0, 100, 0)
+			frame((520,20);(540,40)
+		button.end
+		
+		button.begin:
+			name(ELLIPSE)
+			highlight(250, 0, 0)
+			color(0, 100, 0)
+			frame((520,40);(540,60)
+		button.end
+		
+		button.begin:
+			name(RECTANGLE)
+			highlight(250, 0, 0)
+			color(0, 100, 0)
+			frame((520,60);(540,80)
+		button.end
+		
+		button.begin:
+			name(LINE)
+			highlight(250, 0, 0)
+			color(0, 100, 0)
+			frame((520,80);(540,100)
+		button.end
+		
+		button.begin:
+			name(SETCOLOR1)
+			highlight(250, 0, 0)
+			color(0, 100, 0)
+			frame((520,100);(540,120)
+		button.end
+		
+		button.begin:
+			name(SETCOLOR2)
+			highlight(250, 0, 0)
+			color(0, 100, 0)
+			frame((520,120);(540,140)
+		button.end
+		
+		button.begin:
+			name(SETCOLOR3)
+			highlight(250, 0, 0)
+			color(0, 100, 0)
+			frame((520,140);(540,160)
+		button.end
+		
+		button.begin:
+			name(SETCOLOR4)
+			highlight(250, 0, 0)
+			color(0, 100, 0)
+			frame((520,160);(540,180)
+		button.end
+		
+		button.begin:
+			name(DEC_SIZE)
+			highlight(250, 0, 0)
+			color(0, 100, 0)
+			frame((520,180);(540,200)
+		button.end
+		
+		button.begin:
+			name(INC_SIZE)
+			highlight(250, 0, 0)
+			color(0, 100, 0)
+			frame((520,200);(540,220)
+		button.end
+		
+		button.begin:
+			name(ZOOM_IN)
+			highlight(250, 0, 0)
+			color(0, 100, 0)
+			frame((520,220);(540,240)
+		button.end
+		
+		button.begin:
+			name(ZOOM_OUT)
+			highlight(250, 0, 0)
+			color(0, 100, 0)
+			frame((520,240);(540,260)
+		button.end
+		
+		frame((520,0);(560,300))
+		
+	window.end
+	
+	
+	// WINDOW WITH SIMPLE OPERATIONS
+	window.begin:
+		
+		color(100, 200, 250)
+		name(MAIN)
+		
+		button.begin:
+			name(CLEAR)
+			highlight(250, 250, 0)
+			color(110, 100, 0)
+			frame((585,10);(600,50)
+		button.end
+		
+		
+		frame((580,0);(640,300))
+		
+	window.end
+	
+	// WINDOW FOR SAVING DRAWINGS
+	window.begin:
+		
+		color(100, 200, 250)
+		name(SAVE)
+		
+		button.begin:
+			name(PIC_1)
+			highlight(250, 250, 0)
+			color(110, 100, 0)
+			frame((710,10);(730,50)
+		button.end
+		
+		button.begin:
+			name(PIC_2)
+			highlight(250, 250, 0)
+			color(110, 100, 0)
+			frame((710,60);(730,100)
+		button.end
+		
+		
+		frame((700,0);(740,300))
+		
+	window.end
+	
+	// WINDOW FOR OPENING DRAWINGS
+	window.begin:
+		
+		color(100, 200, 250)
+		name(LOAD)
+		
+		button.begin:
+			name(PIC_1)
+			highlight(250, 250, 0)
+			color(110, 100, 0)
+			frame((750,10);(770,50)
+		button.end
+		
+		button.begin:
+			name(PIC_2)
+			highlight(250, 250, 0)
+			color(110, 100, 0)
+			frame((750,60);(770,100)
+		button.end
+		
+		
+		frame((760,0);(800,300))
+		
+	window.end
+menu.end+++

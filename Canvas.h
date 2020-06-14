@@ -3,28 +3,42 @@
 #include "pch.h"
 
 enum DIRECTION {
-	UP,
-	DOWN,
-	RIGHT,
-	LEFT
+	RIGHT = 1,
+	LEFT = -1,
+	UP = -10,
+	DOWN = 10,
 };
 
 class Canvas {
 
-	vector<vector<MyColor>> canvas;
-	pair<int, int> scalePoint;
-	int scale;
+	ColorMatrix canvas;
+	Vector zoomPoint;
+	int scale = 1;
+
+	bool DrawCell(const Vector& cell, const MyColor& color);
+
+	Vector GetEdge() const;
+
+	void PrintOnDesktop(HDC hdc, const Vector& deskPoint) const;
 
 public:
 
-	bool DrawCell(const pair<int, int>& cell, MyColor& color);
+	Canvas(int width, int height);
+
+	bool IsCanvas(const Vector& point) const;
+
+	void Clear();
+
+	void DrawCircle(const Vector& mid, const MyColor& color, int radius);
+
+	void DrawSquare(const Vector& mid, const MyColor& color, int radius);
 
 	// return indexes of cell in canvas 2D vector
-	// adjusted for scale and scalePoint
-	pair<int, int> GetPoint(pair<int, int> winApiPoint) const;
+	// adjusted for scale and scaleVector
+	Vector GetVector(const Vector& winApiVector) const;
 
 	// render canvas using WinApi
-	void Render();
+	void Render(HDC hdc) const;
 
 	void ZoomIn();
 
@@ -34,5 +48,5 @@ public:
 
 	void LoadDrawing(string fileName);
 
-	void SaveDrawing(string fileName);
+	void SaveDrawing(string fileName) const;
 };

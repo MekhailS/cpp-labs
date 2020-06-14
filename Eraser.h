@@ -1,12 +1,15 @@
 #pragma once
 #include "pch.h"
 
-#include "BrushAbstract.h"
+#include "AbstractObjects.h"
 
 
-class Eraser : public BrushAbstract {
+class Eraser : public AbstractBrush {
 public:
 
-	// draw with white color
-	virtual void Draw(Canvas& canvas, const pair<int, int>& point) const;
+	Eraser(const AbstractBrush& brush) : AbstractBrush(brush) {}
+
+	void Draw(Canvas& canvas, const Vector& pos) override {
+		canvas.DrawCircle(pos, MyColor(255, 255, 255), width);
+	}
 };

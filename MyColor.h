@@ -8,6 +8,12 @@ class MyColor {
 
 public:
 
+	MyColor(long int bigInt) {
+		red = bigInt / (1000000);
+		green = (bigInt-red) / 1000;
+		blue = bigInt - (red + green);
+	}
+
 	MyColor(const std::vector<int>& arr) :
 		red(arr[0]), green(arr[1]), blue(arr[2]) {}
 

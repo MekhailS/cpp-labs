@@ -1,11 +1,19 @@
 #pragma once
 #include "pch.h"
 
-#include "BrushAbstract.h"
+#include "AbstractObjects.h"
 
 
-class Brush : public BrushAbstract {
+class Brush : public AbstractBrush {
 public:
 
-	virtual void Draw(Canvas& canvas, const pair<int, int>& point) const;
+	Brush() :
+		AbstractBrush() {}
+
+	Brush(const AbstractBrush& brush) :
+		AbstractBrush(brush) {}
+
+	void Draw(Canvas& canvas, const Vector& pos) override {
+		canvas.DrawCircle(pos, color, width);
+	}
 };
